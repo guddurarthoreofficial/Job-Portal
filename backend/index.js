@@ -1,6 +1,13 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import dotenv from 'dotenv';
+
+
+// sdah
+import connectDB from "./utils/db.js"
+dotenv.config();
+
 
 const app = express();
 
@@ -8,6 +15,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
 
 const corsOptions = {
     origin: "http://localhost:5153", // Fixed missing colon
@@ -23,7 +31,8 @@ app.get("/home", (req, res) => {
     })
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
+    connectDB();
     console.log(`Server is running at Port: ${PORT}`);
 });
