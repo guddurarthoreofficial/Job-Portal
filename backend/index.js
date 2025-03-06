@@ -2,12 +2,10 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from 'dotenv';
+dotenv.config({});
 
-
-// sdah
+// user
 import connectDB from "./utils/db.js"
-dotenv.config();
-
 
 const app = express();
 
@@ -19,7 +17,7 @@ app.use(cookieParser());
 
 const corsOptions = {
     origin: "http://localhost:5153", // Fixed missing colon
-    credentials: true // Fixed typo
+    credentials: true 
 };
 app.use(cors(corsOptions));
 
